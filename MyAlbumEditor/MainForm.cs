@@ -129,6 +129,8 @@ namespace MyAlbumEditor
 
         #endregion
 
+        #region lstPhotos
+
         private void lstPhotos_DrawItem(object sender, DrawItemEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -184,6 +186,27 @@ namespace MyAlbumEditor
             e.ItemWidth = scaledRect.Width + (int)e.Graphics.MeasureString(p.Caption, lstPhotos.Font).Width + 2;
         }
 
+        private void lstPhotos_DoubleClick(object sender, EventArgs e)
+        {
+            btnPhotoProp.PerformClick();
+        }
+
+        private void lstPhotos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var numSelected = lstPhotos.SelectedIndices.Count;
+            var someSelected = numSelected > 0;
+
+            btnMoveUp.Enabled = someSelected && !lstPhotos.GetSelected(0);
+
+            btnMoveDown.Enabled = someSelected && !lstPhotos.GetSelected(lstPhotos.Items.Count - 1);
+
+            btnRemove.Enabled = someSelected;
+
+            btnPhotoProp.Enabled = numSelected == 1;
+        }
+
+        #endregion
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
@@ -219,24 +242,7 @@ namespace MyAlbumEditor
             }
         }
 
-        private void lstPhotos_DoubleClick(object sender, EventArgs e)
-        {
-            btnPhotoProp.PerformClick();
-        }
-
-        private void lstPhotos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var numSelected = lstPhotos.SelectedIndices.Count;
-            var someSelected = numSelected > 0;
-
-            btnMoveUp.Enabled = someSelected && !lstPhotos.GetSelected(0);
-
-            btnMoveDown.Enabled = someSelected && !lstPhotos.GetSelected(lstPhotos.Items.Count - 1);
-
-            btnRemove.Enabled = someSelected;
-
-            btnPhotoProp.Enabled = numSelected == 1;
-        }
+        #region lstPhotos items rearengement buttons
 
         private void btnMoveUp_Click(object sender, EventArgs e)
         {
@@ -309,6 +315,8 @@ namespace MyAlbumEditor
             }
         }
 
+        #endregion
+
         private void cmbAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
             var albumPath = cmbAlbums.SelectedItem.ToString();
@@ -336,6 +344,30 @@ namespace MyAlbumEditor
             }
         }
 
+        private void menuImages_Click(object sender, EventArgs e)
+        {
+            Form imagesDlg = new Form();
+            TabControl tcImages = new TabControl();
+
+            imagesDlg.SuspendLayout();
+            tcImages.SuspendLayout();
+
+            tcImages.Dock = DockStyle.Fill;
+            tcImages.HotTrack = true;
+            tcImages.ShowToolTips = true;
+
+            imagesDlg.Controls.Add(tcImages);
+            imagesDlg.ShowInTaskbar = false;
+            imagesDlg.Size = new Size(400,300);
+            imagesDlg.Text = "Images in " + Path.GetFileName(_album.FileName);
+
+            tcImages.ResumeLayout();
+            imagesDlg.ResumeLayout();
+
+            imagesDlg.ShowDialog();
+            imagesDlg.Dispose();
+        }
+
         #endregion
 
         #region Overrides
@@ -355,6 +387,6 @@ namespace MyAlbumEditor
         }
 
         #endregion
-
+        
     }
 }

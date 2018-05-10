@@ -38,13 +38,15 @@
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.btnPhotoProp = new System.Windows.Forms.Button();
             this.lstPhotos = new System.Windows.Forms.ListBox();
-            this.btnClose = new System.Windows.Forms.Button();
             this.ctxPhotoList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuThumbs = new System.Windows.Forms.ToolStripMenuItem();
             this.displayAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFileName = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCaption = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPhotographer = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuImages = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.ctxPhotoList.SuspendLayout();
@@ -169,24 +171,15 @@
             this.lstPhotos.SelectedIndexChanged += new System.EventHandler(this.lstPhotos_SelectedIndexChanged);
             this.lstPhotos.DoubleClick += new System.EventHandler(this.lstPhotos_DoubleClick);
             // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnClose.Location = new System.Drawing.Point(148, 281);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // ctxPhotoList
             // 
             this.ctxPhotoList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuThumbs,
-            this.displayAsToolStripMenuItem});
+            this.displayAsToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.menuImages});
             this.ctxPhotoList.Name = "ctxPhotoList";
-            this.ctxPhotoList.Size = new System.Drawing.Size(181, 70);
+            this.ctxPhotoList.Size = new System.Drawing.Size(181, 98);
             // 
             // menuThumbs
             // 
@@ -226,6 +219,29 @@
             this.menuPhotographer.Text = "Photographer";
             this.menuPhotographer.Click += new System.EventHandler(this.menuPhotographer_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnClose.Location = new System.Drawing.Point(148, 281);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // menuImages
+            // 
+            this.menuImages.Name = "menuImages";
+            this.menuImages.Size = new System.Drawing.Size(180, 22);
+            this.menuImages.Text = "Images...";
+            this.menuImages.Click += new System.EventHandler(this.menuImages_Click);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.btnClose;
@@ -262,6 +278,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuFileName;
         private System.Windows.Forms.ToolStripMenuItem menuCaption;
         private System.Windows.Forms.ToolStripMenuItem menuPhotographer;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menuImages;
     }
 }
 
