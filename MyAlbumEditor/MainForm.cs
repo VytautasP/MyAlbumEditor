@@ -352,6 +352,24 @@ namespace MyAlbumEditor
             imagesDlg.SuspendLayout();
             tcImages.SuspendLayout();
 
+            foreach (Photograph photograph in _album)
+            {
+                var shortFileName = Path.GetFileName(photograph.FileName);
+
+                TabPage newPage = new TabPage(shortFileName);
+                newPage.SuspendLayout();
+
+                newPage.ToolTipText = photograph.FileName;
+                newPage.Tag = photograph;
+                newPage.Paint += (o, args) =>
+                {
+                    args.Graphics.DrawImage(photograph.Image, photograph.ScaleToFit(newPage.DisplayRectangle));
+                };
+
+                tcImages.Controls.Add(newPage);
+                newPage.ResumeLayout();
+            }
+
             tcImages.Dock = DockStyle.Fill;
             tcImages.HotTrack = true;
             tcImages.ShowToolTips = true;
